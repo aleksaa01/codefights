@@ -1,7 +1,3 @@
-"""
-Given a rectangular matrix of characters, add a border of asterisks(*) to it.
-"""
-
 def addBorder(picture):
     res = picture.copy()
     chars = len(max(picture, key=len)) + 2
@@ -10,3 +6,21 @@ def addBorder(picture):
     res.append('*' * chars)
     res.insert(0, '*' * chars)
     return res
+
+
+"""
+Given a rectangular matrix of characters, add a border of asterisks(*) to it.
+
+Example
+
+For
+
+picture = ["abc",
+           "ded"]
+the output should be
+
+addBorder(picture) = ["*****",
+                      "*abc*",
+                      "*ded*",
+                      "*****"]
+"""
