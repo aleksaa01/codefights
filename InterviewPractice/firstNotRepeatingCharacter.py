@@ -1,22 +1,31 @@
-from collections import OrderedDict
-
-
 def firstNotRepeatingCharacter(s):
-    d = OrderedDict()
-    for i in s:
-        if i in d:
-            d[i] += 1
-        else:
-            d[i] = 0
+    """New solution uses cache friendly data structure"""
 
-    for k, v in d.items():
-        if v == 0:
-            return k
+    # even positions = number of characters
+    # odd positions = last occurrence of that character
+    scounter = [0] * 52
+
+    for i in range(len(s)):
+        char_pos = (ord(s[i]) - 97) * 2
+        scounter[char_pos] += 1
+        scounter[char_pos + 1] = i
+
+    last_occurrence = len(s)
+    for i in range(0, 52, 2):
+        if scounter[i] == 1 and scounter[i + 1] < last_occurrence:
+            last_occurrence = scounter[i + 1]
+
+    if last_occurrence < len(s):
+        return s[last_occurrence]
 
     return '_'
 
 
+
 """
+Note: Write a solution that only iterates over the string once and uses O(1) additional memory, 
+since this is what you would be asked to do during a real interview.
+
 Given a string s consisting of small English letters, find and return the first instance of a
 non-repeating character in it. If there is no such character, return '_'.
 
