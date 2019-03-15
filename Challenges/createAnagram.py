@@ -2,11 +2,10 @@ def createAnagram(s, t):
     schars = [0] * 26
     tchars = [0] * 26
 
-    for i in s:
+    # we can do this because legth of s and t are guaranteed to be equal.
+    for i, j in zip(schars, tchars):
         schars[ord(i) - 65] += 1
-
-    for i in t:
-        tchars[ord(i) - 65] += 1
+        tchars[ord(j) - 65] += 1
 
     num = 0
     for i in range(26):
